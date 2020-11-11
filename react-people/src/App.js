@@ -1,25 +1,95 @@
-import logo from './logo.svg';
-import './App.css';
+// import React from 'react';
 
-function App() {
+// const UserInfo = props =>{
+//   return <>
+//     <p>Username : {props.username}</p>
+//     <p>Active : {props.active}</p>
+//   </>
+// }
+
+// const List= props =>{
+//   const people = [
+//     {name: "John Doe"}, {name: "Mike Miller"}, {name: "Green Jade"}
+//   ]
+//   return (
+//     <>
+//       <h1>React People!</h1>
+//       <ul>
+//         {props.data.map(person => <li key={person.name}>{person.name}</li>)}
+//       </ul>
+//     </>
+//   )
+// }
+
+// const App=()=>{
+//   const saiyan = [
+//     {name: "Son Goku"},
+//     {name: "Son Gohan"},
+//     {name: "Vegeta"}
+//   ];
+//   const human = [
+//     {name: "Bulma"},
+//     {name: "Chi-Chi"},
+//     {name: "Kuririn"}
+//   ];
+//   return (
+//     <>
+//       <List data={human} />
+//       <List data={saiyan} />
+//       <h1>User Information</h1>
+//       <UserInfo username={'Jack Sparrow'} active={true} />
+//     </>
+//   )
+// }
+
+// export default App;
+
+import React from 'react';
+import './App.css';
+const sortByPower = (a, b) => {
+  return b.power - a.power;
+}
+const List = props => {
+  return (<>
+    <h1>React People!</h1>
+    <ul className="list">
+      {props.data.sort(sortByPower).map((person) => (
+        <li key={person.name} className="list-item">
+          <div className="list-item-image-container">
+            <img src={person.thumbnail} />
+          </div>
+          <span className="list-item-name">
+            {person.name} ( Power:{' '}
+            <span className="list-item-power">{person.power}</span> )
+          </span>
+        </li>
+      ))}
+    </ul>
+  </>
+  );
+}
+const App = () => {
+  const human = [
+    {
+      name: 'Krillin',
+      thumbnail:'https://upload.wikimedia.org/wikipedia/pt/6/63/Kuririn_42311.png',
+      power: 10
+    },  
+    {
+      name: 'Bulma',
+      thumbnail: 'https://upload.wikimedia.org/wikipedia/hu/1/1c/Bulma.png',
+      power: 3
+    },
+    {
+      name: 'Chi-chi',
+      thumbnail:'https://upload.wikimedia.org/wikipedia/hu/8/84/Chi-chi_dragon_ball_anime.jpg',
+      power: 30
+    }
+  ];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <List data={human} />
     </div>
   );
 }
-
 export default App;
